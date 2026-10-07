@@ -664,18 +664,6 @@ export default function NmsDashboard() {
             setConnectInitialSource(null);
             setIsConnectOpen(true);
           }}
-          onOpenRawBay={() => {
-            setLayoutMode("tabbed");
-            setActiveTab("monitoring");
-          }}
-          onOpenSettings={() => {
-            setLayoutMode("tabbed");
-            setActiveTab("setting");
-          }}
-          onOpenLogs={() => {
-            setLayoutMode("tabbed");
-            setActiveTab("logging");
-          }}
         />
 
         {/* Connect Modal */}

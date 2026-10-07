@@ -30,9 +30,6 @@ interface OptionASinglePageViewProps {
     customer?: string;
   }) => Promise<void>;
   onOpenConnectModal?: () => void;
-  onOpenRawBay?: () => void;
-  onOpenSettings?: () => void;
-  onOpenLogs?: () => void;
 }
 
 export default function OptionASinglePageView({
@@ -46,9 +43,6 @@ export default function OptionASinglePageView({
   userRole = "operator",
   onDispatchConnect,
   onOpenConnectModal,
-  onOpenRawBay,
-  onOpenSettings,
-  onOpenLogs,
 }: OptionASinglePageViewProps) {
   const [activeSection, setActiveSection] = useState<string>("sec-overview");
   const [clockStr, setClockStr] = useState<string>("");
@@ -201,13 +195,12 @@ export default function OptionASinglePageView({
           ==================================================================== */}
       <header className={styles.topbar}>
         <div className={styles.brand}>
-          {/* Authentic fiber cross-connect shield logo */}
-          <svg className={styles.brandLogo} viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="6" fill="#002244" />
-            <path d="M6 16L16 6L26 16L16 26Z" stroke="#8BC53E" strokeWidth="2.5" />
-            <circle cx="16" cy="16" r="3.5" fill="#8BC53E" />
-            <path d="M16 6V12M16 20V26M6 16H12M20 16H26" stroke="#8BC53E" strokeWidth="2" />
-          </svg>
+          {/* Points of Presence official brand logo */}
+          <img
+            src="/logo.png"
+            alt="Points of Presence"
+            className={styles.brandLogo}
+          />
           <div className={styles.brandName}>POINTS&nbsp;OF&nbsp;PRESENCE</div>
           <div className={styles.brandDivider} />
           <div className={styles.portalName}>IXP Orchestration Portal</div>
@@ -296,24 +289,6 @@ export default function OptionASinglePageView({
         >
           CRM &amp; Billing
         </button>
-
-        <div className={styles.subnavRightTools}>
-          {onOpenRawBay && (
-            <button type="button" className={styles.btnOutline} onClick={onOpenRawBay}>
-              🎛️ Raw ODF Bay
-            </button>
-          )}
-          {onOpenSettings && (
-            <button type="button" className={styles.btnOutline} onClick={onOpenSettings}>
-              ⚙️ Actuator HW
-            </button>
-          )}
-          {onOpenLogs && (
-            <button type="button" className={styles.btnOutline} onClick={onOpenLogs}>
-              📜 Logs
-            </button>
-          )}
-        </div>
       </nav>
 
       <main className={styles.contentArea}>
