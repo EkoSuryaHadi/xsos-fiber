@@ -1,0 +1,28 @@
+services:
+  nms-proxy:
+    build: ./nms-proxy
+    container_name: nms-proxy
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./nms-proxy/.env
+    volumes:
+      - nms-data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/nms_business.db
+    restart: unless-stopped
+
+  nms-dashboard:
+    build: ./nms-dashboard
+    container_name: nms-dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - NMS_PROXY_BASE_URL=http://nms-proxy:8000
+      - NMS_PROXY_API_KEY=nms-secret-key-remote-2026
+    depends_on:
+      - nms-proxy
+    restart: unless-stopped
+
+volumes:
+  nms-data:

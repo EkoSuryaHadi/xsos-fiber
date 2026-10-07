@@ -1,0 +1,689 @@
+/* ==========================================================================
+   LIFECYCLE VIEWS CSS MODULE
+   Pilar 1: BoD Orchestrator & Remote Provisioning
+   Pilar 2: Connection & Optical Monitoring
+   Pilar 3: Availability & SLA Analytics
+   Pilar 4: Facility & Matrix Topology
+   Pilar 5: CRM & Metered Billing
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   OPTION A: SINGLE-PAGE CONTINUOUS SCROLL LAYOUT
+   -------------------------------------------------------------------------- */
+.scrollSubnav {
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(11, 17, 30, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid #1e2c47;
+  border-radius: 6px;
+  padding: 6px 14px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.scrollSubnavGroup {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  overflow-x: auto;
+}
+
+.scrollSubnavItem {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  padding: 7px 13px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scrollSubnavItem:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #1e2c47;
+}
+
+.scrollSubnavItemActive {
+  color: #ffffff !important;
+  background: #0284c7 !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
+}
+
+.scrollSection {
+  scroll-margin-top: 80px;
+  margin-bottom: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.scrollSectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #18253e;
+}
+
+.scrollSectionNum {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(2, 132, 199, 0.18);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.scrollSectionTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
+}
+
+.scrollSectionSub {
+  font-size: 12px;
+  color: #7d8ea3;
+}
+
+/* Row & Column Layouts */
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.col2 {
+  flex: 2;
+  min-width: 0;
+}
+
+.col1 {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Card */
+.card {
+  background: #111a2e;
+  border: 1px solid #1e2c47;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid #1a273f;
+  background: #0d1526;
+}
+
+.cardHeadTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardTitle {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
+}
+
+.cardSub {
+  font-size: 11px;
+  color: #7d8ea3;
+}
+
+.cardBody {
+  padding: 16px 18px;
+  flex: 1;
+}
+
+/* KPI Strip */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.kpiCard {
+  background: #111a2e;
+  border: 1px solid #1e2c47;
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kpiLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7d8ea3;
+}
+
+.kpiValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f8fafc;
+  font-family: var(--font-mono, monospace);
+  line-height: 1.1;
+}
+
+.kpiUnit {
+  font-size: 13px;
+  font-weight: 600;
+  color: #7d8ea3;
+}
+
+.kpiDelta {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.deltaGood { color: #10b981; }
+.deltaWarn { color: #f59e0b; }
+.deltaCrit { color: #ef4444; }
+.deltaMuted { color: #7d8ea3; }
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-family: var(--font-mono, monospace);
+}
+
+.badgeGood {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badgeWarn {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badgeCrit {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badgeNeutral {
+  background: rgba(148, 163, 184, 0.12);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Tables */
+.tableWrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7d8ea3;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid #1a273f;
+  background: #0d1526;
+}
+
+.table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #162238;
+  color: #cbd5e1;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.mono {
+  font-family: var(--font-mono, monospace);
+}
+
+/* Stepper Component */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.stepDot {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9.5px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  flex-shrink: 0;
+}
+
+.stepDone {
+  background: #10b981;
+  color: #042f1a;
+}
+
+.stepCur {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
+  animation: pulse 1.6s infinite;
+}
+
+.stepPending {
+  background: #1a273f;
+  color: #64748b;
+  border: 1px solid #283e66;
+}
+
+.stepLine {
+  width: 14px;
+  height: 2px;
+  background: #1a273f;
+}
+
+.stepLineDone {
+  background: #10b981;
+}
+
+.stepLabel {
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* BoD Form Elements */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.fieldLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7d8ea3;
+}
+
+.input, .select {
+  background: #0a1120;
+  border: 1px solid #1e2c47;
+  border-radius: 5px;
+  padding: 8px 11px;
+  font-size: 12.5px;
+  color: #f1f5f9;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus, .select:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+}
+
+.pillRow {
+  display: flex;
+  gap: 8px;
+}
+
+.pillBtn {
+  flex: 1;
+  text-align: center;
+  padding: 8px 10px;
+  background: #0a1120;
+  border: 1px solid #1e2c47;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pillBtn:hover {
+  background: #141f36;
+  color: #f1f5f9;
+}
+
+.pillBtnActive {
+  background: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+}
+
+/* Feasibility Card */
+.feasibilityCard {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.feasibilityHead {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.feasibilityRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(16, 185, 129, 0.15);
+  color: #94a3b8;
+}
+
+.feasibilityRow:last-child {
+  border-bottom: none;
+}
+
+.feasibilityVal {
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+/* Buttons */
+.submitBtn {
+  background: #10b981;
+  color: #042f1a;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+}
+
+.submitBtn:hover {
+  background: #059669;
+  color: #ffffff;
+}
+
+.submitBtn:active {
+  transform: translateY(1px);
+}
+
+/* Topology Diagram Styling */
+.floorBox {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.floorBox:hover rect {
+  stroke: #38bdf8;
+  stroke-width: 2px;
+}
+
+.portGrid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 3.5px;
+}
+
+.portCell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.1s;
+}
+
+.portCell:hover {
+  transform: scale(1.25);
+  z-index: 2;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.camBox {
+  background: #060b14;
+  border-radius: 6px;
+  border: 1px solid #1e2c47;
+  position: relative;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.camTag {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #ef4444;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono, monospace);
+}
+
+.camDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulse 1.2s infinite;
+}
+
+/* Donut & Stats */
+.donutWrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.donutCircle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.donutHole {
+  position: absolute;
+  inset: 16px;
+  background: #111a2e;
+  border-radius: 50%;
+}
+
+.donutContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donutTotal {
+  font-size: 19px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  color: #f1f5f9;
+}
+
+.donutSub {
+  font-size: 9px;
+  color: #7d8ea3;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* RCA Graph */
+.rcaBox {
+  background: #0a1120;
+  border: 1px solid #1a273f;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+
+.rcaChain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.rcaNode {
+  background: #16233b;
+  border: 1px solid #283e66;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.rcaArrow {
+  color: #7d8ea3;
+  font-weight: bold;
+}
+
+/* Modal Overlay for Invoice & Detail */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.15s ease-out;
+}
+
+.invoiceModal {
+  background: #0e1626;
+  border: 1px solid #283e66;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+.invoiceHead {
+  padding: 16px 20px;
+  border-bottom: 1px solid #1a273f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #08101e;
+}
+
+.invoiceBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

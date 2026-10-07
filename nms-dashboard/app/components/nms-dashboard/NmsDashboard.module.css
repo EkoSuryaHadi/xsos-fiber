@@ -1,0 +1,2517 @@
+/* ==========================================================================
+   XENOPTICS XSOS-576D INDUSTRIAL TELECOM NOC CONSOLE DESIGN SYSTEM
+   Authentic Optical Distribution Frame (ODF) & Robotic Actuator Theme
+   ========================================================================== */
+
+.dashboard {
+  --bg-darkest: #070a11;
+  --bg-chassis: #0b111e;
+  --bg-panel: #0e1626;
+  --bg-card: #121c30;
+  --bg-subrack: #090e18;
+  
+  --border-chassis: #1e2d48;
+  --border-panel: #18243c;
+  --border-subtle: #131c2e;
+  --border-highlight: #283e66;
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-dim: #475569;
+  
+  --laser-green: #10b981;
+  --laser-green-glow: rgba(16, 185, 129, 0.35);
+  --telecom-blue: #0284c7;
+  --telecom-blue-glow: rgba(2, 132, 199, 0.25);
+  --actuator-amber: #f59e0b;
+  --actuator-amber-glow: rgba(245, 158, 11, 0.25);
+  --alarm-red: #ef4444;
+  --alarm-red-glow: rgba(239, 68, 68, 0.3);
+  
+  background-color: var(--bg-darkest);
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(2, 132, 199, 0.05) 0%, transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: var(--font-sans, "IBM Plex Sans", -apple-system, sans-serif);
+  padding: 16px 24px;
+}
+
+.shell {
+  max-width: 1560px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   1. HARDWARE CHASSIS HEADER & NOC TELEMETRY STRIP
+   -------------------------------------------------------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 20px;
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-chassis);
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.chassisIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #131d31 0%, #0a0f1b 100%);
+  border: 1px solid var(--border-highlight);
+  border-radius: 4px;
+  color: #38bdf8;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.systemTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.systemSubLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.deviceModel {
+  color: #38bdf8;
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 1px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.chassisId {
+  color: var(--text-secondary);
+}
+
+.opticalSpec {
+  color: var(--text-dim);
+}
+
+.dividerDot {
+  color: var(--border-highlight);
+}
+
+.mainHeading {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #f8fafc;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.liveTag {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.liveTag::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseLight 2s infinite ease-in-out;
+}
+
+@keyframes pulseLight {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Telemetry Cluster */
+.statusCluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hardwareLedGroup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 14px;
+  background: var(--bg-subrack);
+  border: 1px solid var(--border-panel);
+  border-radius: 3px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.ledItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+}
+
+.ledPin {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #475569;
+  flex: none;
+}
+
+.ledPinGreen {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+}
+
+.ledPinAmber {
+  background: #f59e0b;
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+}
+
+.statusPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  padding: 6px 12px;
+  background: var(--bg-subrack);
+  border: 1px solid var(--border-panel);
+  border-radius: 3px;
+  color: var(--text-secondary);
+}
+
+.controlActionBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 3px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-highlight);
+  color: #38bdf8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.controlActionBtn:hover {
+  background: #1e2c47;
+  color: #7dd3fc;
+  border-color: #38bdf8;
+}
+
+.primaryDispatchBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.15s ease;
+}
+
+.primaryDispatchBtn:hover {
+  background: linear-gradient(180deg, #0369a1 0%, #075985 100%);
+  border-color: #7dd3fc;
+  box-shadow: 0 2px 12px rgba(2, 132, 199, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   2. MISSION-CONTROL CATEGORY SWITCHER (01 MONITORING, 02 SETTING, 03 LOGGING)
+   -------------------------------------------------------------------------- */
+.navTabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.navTabs5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 1200px) {
+  .navTabs5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navTabs5 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .navTabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.navTab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-panel);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.navTab:hover {
+  background: #111a2d;
+  border-color: var(--border-highlight);
+  color: #f1f5f9;
+}
+
+.navTabActive {
+  background: linear-gradient(180deg, #131d32 0%, #0d1526 100%);
+  border-color: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.navTabActive::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.navTabLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navTabIdx {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  background: var(--bg-subrack);
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid var(--border-panel);
+}
+
+.navTabActive .navTabIdx {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(2, 132, 199, 0.15);
+}
+
+.navTabTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navTabTitle {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.navTabSubtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.navTabActive .navTabSubtitle {
+  color: #94a3b8;
+}
+
+.navTabBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  background: var(--bg-subrack);
+  border: 1px solid var(--border-panel);
+  color: var(--text-secondary);
+}
+
+.navTabActive .navTabBadge {
+  background: rgba(2, 132, 199, 0.2);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #7dd3fc;
+}
+
+/* --------------------------------------------------------------------------
+   3. TELECOM METRIC STRIP (4 TELEMETRY CARDS)
+   -------------------------------------------------------------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+.statCard {
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-panel);
+  border-radius: 4px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--border-highlight);
+}
+
+.statAvailable::before { background: #0284c7; }
+.statConnected::before { background: #10b981; }
+.statDisabled::before { background: #64748b; }
+
+.statTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.statSubtext {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.statValRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.statCard .n {
+  font-family: var(--font-mono, monospace);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.statAvailable .n { color: #38bdf8; }
+.statConnected .n { color: #34d399; }
+.statDisabled .n { color: #94a3b8; }
+
+.statPercent {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   4. OPTICAL DISTRIBUTION FRAME (ODF) CHASSIS & PORT MATRIX
+   -------------------------------------------------------------------------- */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 14px;
+  align-items: start;
+}
+
+@media (max-width: 1120px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.odfChassisFrame {
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-chassis);
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.chassisBezelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: linear-gradient(180deg, #131c2d 0%, #0d1422 100%);
+  border-bottom: 1px solid var(--border-panel);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.chassisTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rackEar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: #475569;
+  border: 1px solid #1e293b;
+  padding: 2px 6px;
+  background: #090e18;
+  border-radius: 2px;
+}
+
+.chassisBezelHead h2 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+  color: #f1f5f9;
+}
+
+.chassisTelemetryTags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.telemetryTag {
+  color: var(--text-muted);
+  background: var(--bg-subrack);
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--border-subtle);
+}
+
+.odfBody {
+  padding: 16px 20px;
+}
+
+/* Search and Filters toolbar */
+.filtersToolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  background: var(--bg-subrack);
+  padding: 10px 14px;
+  border: 1px solid var(--border-panel);
+  border-radius: 3px;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 220px;
+  background: #0d1424;
+  border: 1px solid var(--border-panel);
+  color: #f8fafc;
+  border-radius: 3px;
+  padding: 7px 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+}
+
+.filterGroup {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.chip {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 5px 11px;
+  border-radius: 2px;
+  border: 1px solid var(--border-panel);
+  color: var(--text-secondary);
+  background: #111a2d;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip:hover {
+  background: #18253f;
+  color: #ffffff;
+  border-color: var(--border-highlight);
+}
+
+.chipActive {
+  background: #0284c7;
+  border-color: #38bdf8;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Optical Cassette Bays (East & West) */
+.opticalCassetteBay {
+  background: #080d17;
+  border: 1px solid var(--border-panel);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.cassetteHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #141f33;
+}
+
+.cassetteTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cassetteBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.cassetteEast {
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+.cassetteWest {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+.cassetteName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.cassetteSpec {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* LC Duplex Port Grid */
+.portGridContainer {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 4px;
+}
+
+@media (max-width: 1400px) {
+  .portGridContainer { grid-template-columns: repeat(16, 1fr); }
+}
+@media (max-width: 900px) {
+  .portGridContainer { grid-template-columns: repeat(12, 1fr); }
+}
+@media (max-width: 600px) {
+  .portGridContainer { grid-template-columns: repeat(8, 1fr); }
+}
+
+/* REALISTIC LC DUPLEX FIBER CONNECTOR SOCKET */
+.portSocket {
+  position: relative;
+  aspect-ratio: 1;
+  background: #0d1525;
+  border: 1px solid #1c2b45;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portSocket:hover {
+  transform: translateY(-2px);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border-color: #38bdf8;
+}
+
+/* Port Statuses */
+.portAvailable {
+  border-color: #1e3a5f;
+  background: #0c1729;
+}
+
+.portAvailable .opticalCore {
+  background: #0284c7;
+  box-shadow: 0 0 4px rgba(2, 132, 199, 0.6);
+}
+
+.portConnected {
+  border-color: #065f46;
+  background: #06221a;
+  box-shadow: inset 0 0 8px rgba(16, 185, 129, 0.15);
+}
+
+.portConnected .opticalCore {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981, 0 0 2px #ffffff;
+  animation: laserPulse 2s infinite ease-in-out;
+}
+
+@keyframes laserPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.9); opacity: 0.75; }
+}
+
+.portDisabled {
+  border-color: #172033;
+  background: #080d17;
+  opacity: 0.4;
+}
+
+.portDim {
+  opacity: 0.18;
+}
+
+.portSelected {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.5) !important;
+  transform: scale(1.08);
+  z-index: 20;
+}
+
+/* Physical Duplex Receptacle Visuals */
+.portLatchNotch {
+  width: 40%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 1px;
+  margin-bottom: 2px;
+}
+
+.opticalCore {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #334155;
+  transition: all 0.2s ease;
+}
+
+.portNumberLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 8.5px;
+  color: #64748b;
+  margin-top: 2px;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+
+.portConnected .portNumberLabel {
+  color: #34d399;
+  font-weight: 700;
+}
+
+.portAvailable .portNumberLabel {
+  color: #7dd3fc;
+}
+
+/* Legend */
+.odfLegend {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #141f33;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legendPip {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+/* Side Card: Active Cross-Connects & Actuator Queue */
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sideCard {
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-panel);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sideCardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, #131c2e 0%, #0e1524 100%);
+  border-bottom: 1px solid var(--border-panel);
+}
+
+.sideCardHead h3 {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.sideCardBody {
+  padding: 12px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.connRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: #080e19;
+  border: 1px solid #141f33;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  transition: all 0.15s ease;
+}
+
+.connRow:hover {
+  border-color: #0284c7;
+  background: #0c1527;
+}
+
+.connRoute {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f1f5f9;
+}
+
+.routeArrow {
+  color: #10b981;
+}
+
+.connMeta {
+  font-size: 10.5px;
+  color: var(--text-dim);
+}
+
+.connDisconnectBtn {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.connDisconnectBtn:hover:not(:disabled) {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.connDisconnectBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.statusBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+.badgeConnected {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badgeWaiting {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badgeOperating {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   5. LOGGING VIEW (AUDIT TRAIL & ROBOTIC TELEMETRY CONSOLE)
+   -------------------------------------------------------------------------- */
+.loggingContainer {
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-chassis);
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.logHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.logHeader h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.logSubtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.logMetricsStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 800px) {
+  .logMetricsStrip { grid-template-columns: repeat(2, 1fr); }
+}
+
+.logMetricBox {
+  background: #090e18;
+  border: 1px solid #162238;
+  border-radius: 3px;
+  padding: 10px 14px;
+}
+
+.logMetricNum {
+  font-family: var(--font-mono, monospace);
+  font-size: 20px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.logMetricLabel {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+.logFilterBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.filterSelect {
+  background: #0d1424;
+  border: 1px solid var(--border-panel);
+  color: #f8fafc;
+  border-radius: 3px;
+  padding: 7px 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  cursor: pointer;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: #0284c7;
+}
+
+.exportCsvBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 3px;
+  background: #0d1829;
+  border: 1px solid #0284c7;
+  color: #38bdf8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  margin-left: auto;
+}
+
+.exportCsvBtn:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+/* Telemetry Table */
+.logTableContainer {
+  background: #080d17;
+  border: 1px solid var(--border-panel);
+  border-radius: 3px;
+  overflow-x: auto;
+}
+
+.logTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: left;
+}
+
+.logTable th {
+  background: #0c1424;
+  color: #64748b;
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 14px;
+  border-bottom: 1px solid #16243d;
+}
+
+.logTable td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #0e1728;
+  color: #cbd5e1;
+  vertical-align: middle;
+}
+
+.logTableRow {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.logTableRow:hover {
+  background: #0d1629;
+}
+
+.idCell {
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  color: #38bdf8;
+  font-size: 11px;
+}
+
+.timeCell {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.timeMuted {
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.routeVisualCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.portChip {
+  background: #0e182a;
+  border: 1px solid #1e304f;
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: #e2e8f0;
+}
+
+.routeBeam {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.operatorBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #94a3b8;
+  background: #0a1120;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid #142036;
+}
+
+/* --------------------------------------------------------------------------
+   6. SETTING VIEW (PRECISION REMOTE ACTUATOR & INVENTORY)
+   -------------------------------------------------------------------------- */
+.settingContainer {
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-chassis);
+  border-radius: 4px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.settingSection {
+  margin-bottom: 24px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #16243d;
+  margin-bottom: 16px;
+}
+
+.sectionHeader h3 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f1f5f9;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guardBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+.controlGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 850px) {
+  .controlGrid { grid-template-columns: 1fr; }
+}
+
+.controlActionCard {
+  background: #090e18;
+  border: 1px solid #19263f;
+  border-radius: 4px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.controlActionCard h4 {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0 0 6px 0;
+}
+
+.controlActionCard p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.activeConnPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.pickerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+  background: #0d1525;
+  border: 1px solid #182845;
+  border-radius: 2px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.pickerDisconnectBtn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 3px 9px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pickerDisconnectBtn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+/* Hardware Inventory */
+.inventoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 16px;
+}
+
+.inventoryCard {
+  background: #090e18;
+  border: 1px solid #19263f;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.inventoryHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #0d1424;
+  border-bottom: 1px solid #16243d;
+}
+
+.inventoryHead h4 {
+  font-size: 13.5px;
+  font-weight: 600;
+  margin: 0;
+  color: #f8fafc;
+}
+
+.inventoryBody {
+  padding: 16px;
+}
+
+.kvGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.kvItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kvKey {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.kvVal {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+/* Drawers & Footnote */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: 480px;
+  max-width: 90vw;
+  height: 100%;
+  background: #090f1c;
+  border-left: 1px solid var(--border-chassis);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.drawerHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #16243d;
+  margin-bottom: 20px;
+}
+
+.drawerHead h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: #f8fafc;
+}
+
+.drawerClose {
+  background: #10192e;
+  border: 1px solid #1c2b47;
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.drawerClose:hover {
+  background: #1c2b47;
+  color: #ffffff;
+}
+
+.drawerGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.drawerSectionTitle {
+  font-size: 12px;
+  font-family: var(--font-mono, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #38bdf8;
+  margin: 16px 0 8px 0;
+}
+
+.drawerCodeBlock {
+  background: #060a12;
+  border: 1px solid #162238;
+  border-radius: 3px;
+  padding: 12px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #94a3b8;
+  overflow-x: auto;
+}
+
+.footnote {
+  margin-top: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   ROBOTIC SAFETY GUARD, HARDWARE ALARM & INTERLOCK STYLES
+   -------------------------------------------------------------------------- */
+.ledPinRed {
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.9);
+  animation: pulseLed 1.5s infinite;
+}
+
+@keyframes pulseLed {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.9); }
+}
+
+.safetyBannerWrapper {
+  border-radius: 4px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-panel);
+}
+
+.safetyBannerReady {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.08) 0%, rgba(14, 22, 38, 0.6) 100%);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.safetyBannerOperating {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.12) 0%, rgba(14, 22, 38, 0.8) 100%);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.1);
+}
+
+.safetyBannerLocked {
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.12) 0%, rgba(14, 22, 38, 0.8) 100%);
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.1);
+}
+
+.safetyBannerAlarm {
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.2) 0%, rgba(14, 22, 38, 0.9) 100%);
+  border-color: #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+  animation: alarmBorderPulse 2s infinite ease-in-out;
+}
+
+@keyframes alarmBorderPulse {
+  0%, 100% { border-color: rgba(239, 68, 68, 0.4); }
+  50% { border-color: #ef4444; }
+}
+
+.safetyBannerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 18px;
+  flex-wrap: wrap;
+}
+
+.safetyIconCluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.safetyIconReady {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.safetyIconOperating {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f59e0b;
+}
+
+.spinIcon {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.pulseRing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  animation: ringPulse 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+.safetyIconLocked {
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.safetyIconAlert {
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: alertIconShake 3s infinite;
+}
+
+@keyframes alertIconShake {
+  0%, 90%, 100% { transform: scale(1); }
+  92%, 96% { transform: translateY(-2px); }
+  94%, 98% { transform: translateY(2px); }
+}
+
+.safetyTextCluster {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.safetyTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.safetyStateBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.safetyBannerReady .safetyStateBadge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.safetyBannerOperating .safetyStateBadge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.safetyBannerLocked .safetyStateBadge {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+.safetyBannerAlarm .safetyStateBadge {
+  background: rgba(239, 68, 68, 0.35);
+  color: #ffffff;
+  border: 1px solid #ef4444;
+}
+
+.safetyInterlockStatus {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+}
+
+.safetySimTag {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  padding: 1px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.safetyDetailText {
+  margin: 0;
+  font-size: 12.5px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.safetyProgressContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.safetyProgressBar {
+  flex: 1;
+  max-width: 320px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  overflow: hidden;
+}
+
+.safetyProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.safetyProgressLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.safetyRightControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.safetyToggleBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 6px 12px;
+  background: rgba(14, 22, 38, 0.8);
+  border: 1px solid var(--border-highlight);
+  color: #94a3b8;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.safetyToggleBtn:hover {
+  background: #1b263b;
+  color: #e2e8f0;
+  border-color: #38bdf8;
+}
+
+.safetySimDrawer {
+  padding: 12px 18px;
+  background: #060911;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.safetySimHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.safetySimSub {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.safetySimButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.simStateBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 5px 12px;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.simStateBtn:hover {
+  background: #1e293b;
+  border-color: #475569;
+}
+
+.simStateBtnActive {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  color: #34d399;
+  font-weight: 600;
+}
+
+.simStateBtnActiveAmber {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: #f59e0b;
+  color: #fbbf24;
+  font-weight: 600;
+}
+
+.simStateBtnActiveLocked {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+  color: #f87171;
+  font-weight: 600;
+}
+
+.simStateBtnActiveRed {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.modalInterlockWarning {
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.modalSafetyReadyPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #34d399;
+  padding: 6px 12px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   MULTI-CHASSIS SWITCHER, INTERCONNECTION & WEAR GAUGE STYLES
+   -------------------------------------------------------------------------- */
+.chassisSwitcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 10px 16px;
+  background: var(--bg-chassis);
+  border: 1px solid var(--border-chassis);
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+.chassisSwitcherLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.chassisSwitcherLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chassisSwitchBtnGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chassisSwitchBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 3px;
+  background: var(--bg-subrack);
+  border: 1px solid var(--border-panel);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.chassisSwitchBtn:hover {
+  background: #141f33;
+  color: #f1f5f9;
+  border-color: #38bdf8;
+}
+
+.chassisSwitchBtnActive {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.chassisMetaBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: #64748b;
+}
+
+.statInterconnect {
+  border-top-color: #a855f7 !important;
+}
+
+.statInterconnect:hover {
+  border-color: #a855f7;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
+}
+
+.portInterconnection {
+  border-color: #a855f7 !important;
+  box-shadow: inset 0 0 6px rgba(168, 85, 247, 0.35);
+}
+
+.interconnBadge {
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  font-size: 8px;
+  color: #c084fc;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.customerBadge {
+  position: absolute;
+  bottom: 2px;
+  right: 3px;
+  font-size: 8px;
+  color: #38bdf8;
+  line-height: 1;
+}
+
+.drawerCustomerCard {
+  background: rgba(56, 189, 248, 0.07);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.drawerInterconnCard {
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.wearGaugeContainer {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wearGaugeBar {
+  height: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+}
+
+.wearGaugeFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   7. MODAL DIALOGS, BATCH CONNECT & READ-ONLY VIEWER STYLES
+   -------------------------------------------------------------------------- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.8);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modalBox {
+  width: 100%;
+  max-width: 580px;
+  background: #090f1d;
+  border: 1px solid var(--border-chassis);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 90vh;
+}
+
+.modalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #0d1527;
+  border-bottom: 1px solid #16243d;
+}
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modalTitle h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  color: #f8fafc;
+}
+
+.modalIcon {
+  font-size: 20px;
+}
+
+.modalModeSwitcher {
+  display: flex;
+  background: #060a12;
+  border-bottom: 1px solid #16243d;
+  padding: 4px 16px;
+  gap: 8px;
+}
+
+.modalModeTab {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modalModeTab:hover {
+  color: #f1f5f9;
+}
+
+.modalModeTabActive {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.05);
+}
+
+.modalForm,
+.modalBody {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.previewBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #060a13;
+  border: 1px solid #17243c;
+  border-radius: 4px;
+  padding: 12px 18px;
+}
+
+.previewEndpoint {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.previewLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.previewEndpoint strong {
+  font-size: 13px;
+  color: #f1f5f9;
+}
+
+.portBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 1px 6px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.previewDivider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.previewArrow {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: #38bdf8;
+}
+
+.previewRoute {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.formGroup label {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.formGroup select,
+.formGroup input[type="text"],
+.formGroup input[type="number"],
+.formGroup input[type="datetime-local"] {
+  background: #060a12;
+  border: 1px solid #1e2e4a;
+  border-radius: 3px;
+  color: #f8fafc;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.formGroup select:focus,
+.formGroup input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.25);
+}
+
+.fieldHelper {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.fieldLabelSmall {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+/* Batch Ribbon Styles */
+.batchSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ribbonPresetBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #060a12;
+  border: 1px solid #16243d;
+  border-radius: 4px;
+}
+
+.ribbonButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.ribbonBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  background: #0d1527;
+  border: 1px solid #1e2e4a;
+  color: #94a3b8;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.ribbonBtn:hover {
+  background: #142036;
+  color: #f1f5f9;
+}
+
+.ribbonBtnActive {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+.batchPairsCard {
+  background: #060a12;
+  border: 1px solid #16243d;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.batchPairsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #0d1527;
+  border-bottom: 1px solid #16243d;
+  font-size: 11.5px;
+}
+
+.batchPairsList {
+  max-height: 160px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.batchPairRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-bottom: 1px solid #0d1627;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.batchPairRowOk {
+  background: rgba(16, 185, 129, 0.02);
+}
+
+.batchPairRowErr {
+  background: rgba(239, 68, 68, 0.07);
+}
+
+.batchPairIdx {
+  color: #64748b;
+  width: 28px;
+}
+
+.batchPairSrc,
+.batchPairTgt {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.batchPairArrow {
+  color: #38bdf8;
+  font-size: 10px;
+}
+
+.batchPairBadge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+.scheduleOption {
+  background: #060a12;
+  border: 1px solid #16243d;
+  border-radius: 4px;
+  padding: 10px 12px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.safetyCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.4;
+  cursor: pointer;
+  padding: 10px;
+  background: #060a12;
+  border: 1px solid #16243d;
+  border-radius: 4px;
+}
+
+.dangerNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.dangerIcon {
+  font-size: 20px;
+}
+
+.dangerText strong {
+  color: #ef4444;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dangerText p {
+  color: #fca5a5;
+  font-size: 11.5px;
+  margin: 4px 0 0 0;
+  line-height: 1.45;
+}
+
+.disconnectTargetCard {
+  background: #060a12;
+  border: 1px solid #16243d;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+}
+
+.k {
+  color: #64748b;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.v {
+  color: #f1f5f9;
+}
+
+.errorAlert {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.readOnlyNotice {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+  padding: 9px 12px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modalActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cancelBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 3px;
+  background: #0d1527;
+  border: 1px solid #1e2e4a;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.cancelBtn:hover {
+  background: #16233d;
+  color: #ffffff;
+}
+
+.submitBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+  transition: all 0.15s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #0369a1 0%, #075985 100%);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
+}
+
+.dangerBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 100%);
+  border: 1px solid #ef4444;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  transition: all 0.15s ease;
+}
+
+.dangerBtn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #b91c1c 0%, #991b1b 100%);
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
+}
+
+/* Read-Only Topbar Controls */
+.roleSelectorGroup {
+  display: flex;
+  align-items: center;
+  background: #090e18;
+  border: 1px solid #1a2a44;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.roleBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 3px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.roleBtn:hover {
+  color: #cbd5e1;
+}
+
+.roleBtnActiveOperator {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.roleBtnActiveReadonly {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.logoutBtn {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 3px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s ease;
+}
+
+.logoutBtn:hover {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.readOnlyBannerGlobal {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  color: #fde68a;
+}
+
+

@@ -1,0 +1,413 @@
+/* ==========================================================================
+   BOD ORCHESTRATOR VIEW CSS MODULE
+   Exact pixel & color fidelity with IXP Orchestration Portal reference design
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  color: #14212E;
+  font-family: var(--font-sans, "IBM Plex Sans", system-ui, -apple-system, sans-serif);
+}
+
+.mono {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.colForm {
+  flex: 0 0 380px;
+  min-width: 320px;
+}
+
+.colTable {
+  flex: 1;
+  min-width: 480px;
+}
+
+@media (max-width: 1024px) {
+  .row {
+    flex-direction: column;
+  }
+  .colForm, .colTable {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CARD STYLES
+   -------------------------------------------------------------------------- */
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E6EB;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #EDEFF2;
+  background: #ffffff;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #14212E;
+  letter-spacing: 0.1px;
+}
+
+.cardSub {
+  font-size: 11px;
+  color: #8B98A5;
+  margin-top: 2px;
+}
+
+.cardBody {
+  padding: 14px 16px;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   FORM FIELDS & INPUTS
+   -------------------------------------------------------------------------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.fieldLabel {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #5C6B7A;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.input {
+  border: 1px solid #D7DDE4;
+  border-radius: 6px;
+  padding: 9px 11px;
+  font-size: 12.5px;
+  color: #14212E;
+  background: #FBFBFD;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #003366;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.1);
+}
+
+.fieldrow {
+  display: flex;
+  gap: 10px;
+}
+
+.pillrow {
+  display: flex;
+  gap: 8px;
+}
+
+.pill {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #D7DDE4;
+  border-radius: 6px;
+  padding: 8px 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #5C6B7A;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.pill:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.pillSel {
+  background: #003366 !important;
+  border-color: #003366 !important;
+  color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   FEASIBILITY CARD
+   -------------------------------------------------------------------------- */
+.feascard {
+  background: #F5FAF0;
+  border: 1px solid #C9E6A8;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+
+.feasHead {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #3E6B12;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.feasrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding: 5px 0;
+  border-bottom: 1px dashed #DCEBC9;
+  color: #3A4956;
+}
+
+.feasrow:last-child {
+  border-bottom: none;
+}
+
+.feasval {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-weight: 700;
+  color: #14212E;
+}
+
+.feasspec {
+  color: #8B98A5;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS & BADGES
+   -------------------------------------------------------------------------- */
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: #8BC53E;
+  color: #0F3D0F;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s ease, opacity 0.15s ease;
+  user-select: none;
+}
+
+.btnPrimary:hover {
+  background: #7CB332;
+}
+
+.btnPrimary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badgeNeutral {
+  background: #EEF1F5;
+  color: #5C6B7A;
+}
+
+.badgeGood {
+  background: rgba(12, 163, 12, 0.1);
+  color: #0b8f0b;
+}
+
+.badgeWarning {
+  background: rgba(250, 178, 25, 0.18);
+  color: #8a5c00;
+}
+
+/* --------------------------------------------------------------------------
+   TABLE & WORKFLOW STEPPER
+   -------------------------------------------------------------------------- */
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #8B98A5;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid #E2E6EB;
+  background: #FAFAFB;
+}
+
+.table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #F1F3F5;
+  color: #2B3947;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: #F8FAFC;
+}
+
+.stepperWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.stepDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stepDotDone {
+  background: #0ca30c;
+  color: #ffffff;
+}
+
+.stepDotCur {
+  background: #2a78d6;
+  color: #ffffff;
+  box-shadow: 0 0 6px rgba(42, 120, 214, 0.5);
+  animation: curPulse 1.8s infinite;
+}
+
+.stepDotPending {
+  background: #E2E6EB;
+  color: #8B98A5;
+}
+
+@keyframes curPulse {
+  0% { transform: scale(0.95); opacity: 0.85; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.85; }
+}
+
+.stepLine {
+  width: 18px;
+  height: 2px;
+  background: #E2E6EB;
+}
+
+.stepLineDone {
+  background: #0ca30c;
+}
+
+.stepLabel {
+  font-size: 9.5px;
+  color: #8B98A5;
+  margin-top: 1px;
+}
+
+.stepLabelActive {
+  color: #0b8f0b;
+  font-weight: 600;
+}
+
+.stepLabelCur {
+  color: #2a78d6;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   BOTTOM 3 STAT CARDS
+   -------------------------------------------------------------------------- */
+.stat3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .stat3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat {
+  background: #ffffff;
+  border: 1px solid #E2E6EB;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.statLabel {
+  font-size: 10.5px;
+  color: #8B98A5;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.statValue {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  margin-top: 5px;
+  color: #14212E;
+}

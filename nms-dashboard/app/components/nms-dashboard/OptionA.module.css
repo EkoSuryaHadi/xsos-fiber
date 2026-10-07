@@ -1,0 +1,780 @@
+/* ==========================================================================
+   OPTION A: SINGLE-PAGE SCROLL THEME (LIGHT ENTERPRISE TELECOM NOC)
+   Mirrors IXP Orchestration Portal — Option A Single-Page Scroll Layout
+   ========================================================================== */
+
+.pageWrap {
+  width: 100%;
+  min-height: 100vh;
+  background: #EEF1F5;
+  color: #14212E;
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.mono {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+/* --------------------------------------------------------------------------
+   1. TOP MASTHEAD BAR
+   -------------------------------------------------------------------------- */
+.topbar {
+  height: 64px;
+  background: #003366;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandLogo {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.brandName {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.brandDivider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.portalName {
+  color: #CFE0F0;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.siteChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #DCE7F1;
+  font-size: 11.5px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+.clock {
+  color: #B9CBDD;
+  font-size: 11.5px;
+  white-space: nowrap;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #8BC53E;
+  color: #08360E;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. STICKY SUB-NAV
+   -------------------------------------------------------------------------- */
+.subnav {
+  height: 46px;
+  background: #ffffff;
+  border-bottom: 1px solid #E2E6EB;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 4px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.subnavItem {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #5C6B7A;
+  padding: 0 14px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.subnavItem:hover {
+  color: #003366;
+  background: rgba(0, 51, 102, 0.03);
+}
+
+.subnavItemActive {
+  color: #003366 !important;
+  border-bottom-color: #8BC53E !important;
+  font-weight: 700;
+}
+
+.subnavRightTools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   3. CONTENT CONTAINER & SECTIONS
+   -------------------------------------------------------------------------- */
+.contentArea {
+  flex: 1;
+  padding-bottom: 36px;
+}
+
+.section {
+  padding: 24px 24px 0px;
+  scroll-margin-top: 50px;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #14212E;
+}
+
+.sectionSub {
+  font-size: 12px;
+  color: #8B98A5;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  margin: 0 24px 20px;
+}
+
+.col2 {
+  flex: 2;
+  min-width: 0;
+}
+
+.col1 {
+  flex: 1;
+  min-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. CARDS & KPIS
+   -------------------------------------------------------------------------- */
+.kpiStrip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 24px 20px;
+}
+
+.kpi {
+  background: #ffffff;
+  border: 1px solid #E2E6EB;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.kpiLabel {
+  font-size: 10px;
+  color: #8B98A5;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 700;
+}
+
+.kpiValue {
+  font-size: 20px;
+  font-weight: 700;
+  color: #14212E;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.kpiUnit {
+  font-size: 12px;
+  color: #8B98A5;
+  font-weight: 600;
+}
+
+.kpiDelta {
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.deltaGood { color: #0ca30c; }
+.deltaCritical { color: #d03b3b; }
+.deltaMuted { color: #8B98A5; }
+
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E6EB;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #EDEFF2;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #14212E;
+}
+
+.cardSub {
+  font-size: 11px;
+  color: #8B98A5;
+  margin-top: 2px;
+}
+
+.cardBody {
+  padding: 14px 16px;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   5. BADGES & CHIPS
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badgeGood {
+  background: rgba(12, 163, 12, 0.1);
+  color: #0b8f0b;
+}
+
+.badgeWarning {
+  background: rgba(250, 178, 25, 0.18);
+  color: #8a5c00;
+}
+
+.badgeCritical {
+  background: rgba(208, 59, 59, 0.1);
+  color: #c22f2f;
+}
+
+.badgeNeutral {
+  background: #EEF1F5;
+  color: #5C6B7A;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. TABLES
+   -------------------------------------------------------------------------- */
+.tableWrap {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #8B98A5;
+  font-weight: 700;
+  padding: 7px 10px;
+  border-bottom: 1px solid #E2E6EB;
+}
+
+.table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #F1F3F5;
+  color: #2B3947;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. ALARM ROWS & DONUTS
+   -------------------------------------------------------------------------- */
+.alarmRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 0;
+  border-bottom: 1px solid #F1F3F5;
+}
+
+.alarmRow:last-child {
+  border-bottom: none;
+}
+
+.alarmDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.alarmMsg {
+  font-size: 11.5px;
+  color: #14212E;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.alarmMeta {
+  font-size: 10px;
+  color: #8B98A5;
+  margin-top: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   7b. LEGENDS & DONUT CHARTS
+   -------------------------------------------------------------------------- */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  color: #5C6B7A;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legendSwatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.donutWrap {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  flex-shrink: 0;
+}
+
+.donut {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.donutHole {
+  position: absolute;
+  inset: 17px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donutN {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-size: 20px;
+  font-weight: 700;
+  color: #14212E;
+}
+
+.donutL {
+  font-size: 9px;
+  color: #8B98A5;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   8. FORMS & BUTTONS
+   -------------------------------------------------------------------------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.fieldLabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: #5C6B7A;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.input, .select {
+  border: 1px solid #D7DDE4;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 12px;
+  color: #14212E;
+  background: #FBFCFD;
+  outline: none;
+}
+
+.pillRow {
+  display: flex;
+  gap: 6px;
+}
+
+.pill {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #D7DDE4;
+  border-radius: 6px;
+  padding: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #5C6B7A;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.15s;
+}
+
+.pillActive {
+  background: #003366 !important;
+  border-color: #003366 !important;
+  color: #ffffff !important;
+}
+
+.btnPrimary {
+  background: #8BC53E;
+  color: #0F3D0F;
+  border: none;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.btnPrimary:hover {
+  background: #7bb532;
+}
+
+.btnOutline {
+  background: #ffffff;
+  border: 1px solid #D7DDE4;
+  color: #3A4956;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.miniv {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+.minivSub {
+  font-size: 10px;
+  color: #8B98A5;
+}
+
+.ticket {
+  border: 1px solid #E2E6EB;
+  border-radius: 7px;
+  padding: 9px 11px;
+  margin-bottom: 8px;
+}
+
+.ticket:last-child {
+  margin-bottom: 0;
+}
+
+.ticketTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.ticketId {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.footerCap {
+  text-align: center;
+  font-size: 10.5px;
+  color: #8B98A5;
+  padding: 24px;
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(139, 197, 62, 0.16);
+  border: 1px solid rgba(139, 197, 62, 0.4);
+  color: #c4f082;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.liveBadgeStream {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(139, 197, 62, 0.22);
+  border: 1px solid rgba(139, 197, 62, 0.6);
+  color: #D6F89E;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 0 12px rgba(139, 197, 62, 0.35);
+}
+
+.liveBadgeDemo {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(250, 178, 25, 0.18);
+  border: 1px solid rgba(250, 178, 25, 0.35);
+  color: #ffd27d;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8BC53E;
+  box-shadow: 0 0 6px #8BC53E;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.liveDotDemo {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fab219;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #DCE7F1;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.refreshBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Facility Floors & Detail Panel
+   -------------------------------------------------------------------------- */
+.floorInteractive {
+  cursor: pointer;
+  outline: none;
+}
+
+.floorInteractive:hover rect {
+  filter: brightness(0.96);
+}
+
+.floorInteractive rect {
+  transition: fill 0.18s ease, stroke 0.18s ease, stroke-width 0.18s ease;
+}
+
+.facilityDetailPanel {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.facilityDetailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 6px;
+}
+
+.facilityDetailTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.facilityDetailDesc {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.facilityDetailMeta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.facilityMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.facilityMetaLabel {
+  color: #64748b;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+.facilityMetaValue {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.facilityRacksWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.facilityRackChip {
+  font-size: 10px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+

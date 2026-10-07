@@ -1,0 +1,316 @@
+/* ==========================================================================
+   FAULT & EVENTS MANAGEMENT CSS MODULE
+   Exact pixel & color fidelity with IXP Orchestration Portal reference design
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  color: #14212E;
+  font-family: var(--font-sans, "IBM Plex Sans", system-ui, -apple-system, sans-serif);
+}
+
+.mono {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+}
+
+/* --------------------------------------------------------------------------
+   1. TOP TOOL ROW & SEARCH
+   -------------------------------------------------------------------------- */
+.toolrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toolgroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 16px;
+  border: 1px solid #D7DDE4;
+  color: #5C6B7A;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.chip:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.chipActive {
+  background: #003366 !important;
+  border-color: #003366 !important;
+  color: #ffffff !important;
+}
+
+.searchbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #D7DDE4;
+  border-radius: 6px;
+  padding: 7px 12px;
+  background: #ffffff;
+  color: #8B98A5;
+  font-size: 12px;
+  min-width: 260px;
+  transition: border-color 0.15s ease;
+}
+
+.searchbox:focus-within {
+  border-color: #003366;
+  box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.08);
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 12px;
+  color: #14212E;
+  width: 100%;
+  font-family: inherit;
+}
+
+.searchInput::placeholder {
+  color: #8B98A5;
+}
+
+/* --------------------------------------------------------------------------
+   2. MAIN ROW LAYOUT
+   -------------------------------------------------------------------------- */
+.row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.col2 {
+  flex: 2;
+  min-width: 480px;
+}
+
+.col1 {
+  flex: 1;
+  min-width: 360px;
+}
+
+@media (max-width: 1024px) {
+  .row {
+    flex-direction: column;
+  }
+  .col2, .col1 {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E6EB;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #EDEFF2;
+  background: #ffffff;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #14212E;
+  letter-spacing: 0.1px;
+}
+
+.cardBody {
+  padding: 14px 16px;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   3. EVENT LOG TABLE & BADGES
+   -------------------------------------------------------------------------- */
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #8B98A5;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid #E2E6EB;
+  background: #FAFAFB;
+}
+
+.table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #F1F3F5;
+  color: #2B3947;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: #F8FAFC;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badgeGood {
+  background: rgba(12, 163, 12, 0.1);
+  color: #0b8f0b;
+}
+
+.badgeWarning {
+  background: rgba(250, 178, 25, 0.18);
+  color: #8a5c00;
+}
+
+.badgeCritical {
+  background: rgba(208, 59, 59, 0.1);
+  color: #c22f2f;
+}
+
+.badgeNeutral {
+  background: #EEF1F5;
+  color: #5C6B7A;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. ROOT CAUSE CORRELATION BOX
+   -------------------------------------------------------------------------- */
+.rcaBox {
+  background: #F7F8FA;
+  border: 1px solid #E2E6EB;
+  border-radius: 7px;
+  padding: 12px 14px;
+  margin: 0 16px 16px 16px;
+}
+
+.rcaTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #14212E;
+}
+
+.rcaChain {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.rcaNode {
+  background: #ffffff;
+  border: 1px solid #D7DDE4;
+  border-radius: 5px;
+  padding: 5px 9px;
+  font-weight: 600;
+  color: #2B3947;
+}
+
+.rcaArrow {
+  color: #8B98A5;
+}
+
+/* --------------------------------------------------------------------------
+   5. MAINTENANCE TICKET QUEUE CARDS
+   -------------------------------------------------------------------------- */
+.ticket {
+  border: 1px solid #E2E6EB;
+  border-radius: 7px;
+  padding: 11px 13px;
+  margin-bottom: 10px;
+  background: #ffffff;
+  transition: border-color 0.12s ease;
+}
+
+.ticket:last-child {
+  margin-bottom: 0;
+}
+
+.ticket:hover {
+  border-color: #cbd5e1;
+}
+
+.ticketTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.ticketId {
+  font-family: var(--font-mono, "IBM Plex Mono", monospace);
+  font-weight: 700;
+  font-size: 12px;
+  color: #14212E;
+}
+
+.ticketSubject {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2B3947;
+}
+
+.ticketMeta {
+  font-size: 11px;
+  color: #8B98A5;
+  margin-top: 3px;
+}

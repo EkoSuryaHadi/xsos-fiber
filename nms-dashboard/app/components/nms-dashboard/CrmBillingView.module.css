@@ -1,0 +1,431 @@
+/* ==========================================================================
+   CRM & METERED BILLING MANAGEMENT CSS MODULE
+   Exact Enterprise NOC Light Styling Tokens
+   ========================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.col1 {
+  flex: 1;
+  min-width: 360px;
+}
+
+.col2 {
+  flex: 2;
+  min-width: 540px;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #E2E6EB;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #EDEFF2;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #ffffff;
+}
+
+.cardHeadTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #14212E;
+  letter-spacing: -0.1px;
+}
+
+.cardSub {
+  font-size: 11px;
+  color: #8B98A5;
+}
+
+.cardBody {
+  padding: 14px 16px;
+  flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   TABLE STYLES
+   -------------------------------------------------------------------------- */
+.tableWrap {
+  overflow-x: auto;
+  flex: 1;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #8B98A5;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid #E2E6EB;
+  background: #F8FAFC;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #F1F3F5;
+  color: #2B3947;
+  vertical-align: middle;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background: #F9FAFB;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* --------------------------------------------------------------------------
+   BADGE STYLES
+   -------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badgeGood {
+  background: rgba(12, 163, 12, 0.1);
+  color: #0b8f0b;
+}
+
+.badgeWarning {
+  background: rgba(250, 178, 25, 0.18);
+  color: #8a5c00;
+}
+
+.badgeCritical {
+  background: rgba(208, 59, 59, 0.1);
+  color: #c22f2f;
+}
+
+.badgeNeutral {
+  background: #EEF1F5;
+  color: #5C6B7A;
+}
+
+.badgePlatinum {
+  background: rgba(126, 34, 206, 0.1);
+  color: #7e22ce;
+  border: 1px solid rgba(126, 34, 206, 0.2);
+}
+
+.badgeGold {
+  background: rgba(217, 119, 6, 0.1);
+  color: #b45309;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.badgeSilver {
+  background: rgba(100, 116, 139, 0.1);
+  color: #475569;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   FORM & CALCULATOR ELEMENTS
+   -------------------------------------------------------------------------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #5C6B7A;
+}
+
+.select {
+  width: 100%;
+  height: 34px;
+  padding: 0 10px;
+  background: #FBFCFD;
+  border: 1px solid #D5DCE4;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #14212E;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.select:focus {
+  border-color: #003366;
+  box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.1);
+}
+
+.slider {
+  width: 100%;
+  accent-color: #003366;
+  cursor: pointer;
+  height: 6px;
+}
+
+.calcCard {
+  background: #F8FAFC;
+  border: 1px solid #E2E6EB;
+  border-radius: 6px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calcRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  color: #5C6B7A;
+}
+
+.calcVal {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-weight: 600;
+  color: #14212E;
+}
+
+.calcTotal {
+  border-top: 1px solid #E2E6EB;
+  padding-top: 8px;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #14212E;
+}
+
+.calcTotalVal {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0ca30c;
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS
+   -------------------------------------------------------------------------- */
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #003366;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: inherit;
+  padding: 0 16px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #002244;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pillBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #EEF1F5;
+  border: 1px solid #D5DCE4;
+  border-radius: 4px;
+  color: #14212E;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.pillBtn:hover {
+  background: #E2E6EB;
+  border-color: #B9CBDD;
+}
+
+.pillBtnPrimary {
+  background: #003366;
+  color: #ffffff;
+  border-color: #003366;
+}
+
+.pillBtnPrimary:hover {
+  background: #002244;
+  border-color: #002244;
+}
+
+.pillBtnSuccess {
+  background: rgba(12, 163, 12, 0.1);
+  color: #0b8f0b;
+  border-color: rgba(12, 163, 12, 0.25);
+}
+
+.pillBtnSuccess:hover {
+  background: rgba(12, 163, 12, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   INVOICE DETAIL MODAL
+   -------------------------------------------------------------------------- */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 33, 46, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.invoiceModal {
+  background: #ffffff;
+  border: 1px solid #C7CFD7;
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 34, 68, 0.18);
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.invoiceHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-bottom: 1px solid #EDEFF2;
+  background: #F8FAFC;
+}
+
+.invoiceTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #003366;
+  margin: 0;
+}
+
+.invoiceSub {
+  font-size: 11px;
+  color: #8B98A5;
+  margin-top: 2px;
+}
+
+.invoiceClose {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #8B98A5;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.invoiceClose:hover {
+  color: #14212E;
+  background: #EEF1F5;
+}
+
+.invoiceBody {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tenantCard {
+  background: #F8FAFC;
+  border: 1px solid #E2E6EB;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+
+.tenantCardOrg {
+  font-size: 13px;
+  font-weight: 700;
+  color: #003366;
+}
+
+.tenantCardMeta {
+  font-size: 11px;
+  color: #5C6B7A;
+  margin-top: 3px;
+}
+
+.invoiceActions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #EDEFF2;
+}
